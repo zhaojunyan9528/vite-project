@@ -9,7 +9,7 @@ import { ref } from 'vue'
 const a = ref('123')
 let b = 123
 console.log(a, b)
-const str = 'aaaa';
+const str = 'aaaa'
 console.log(str)
 </script>
 <style lang="scss" scoped>
@@ -17,7 +17,7 @@ console.log(str)
   width: 600px;
   height: 400px;
   background-color: hotpink;
-  h1{
+  h1 {
     color: yellow;
   }
 }
