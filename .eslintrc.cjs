@@ -68,6 +68,7 @@ module.exports = {
         after: true
       }
     ],
-    'comma-style': [2, 'last']
+    'comma-style': [2, 'last'],
+    'arrow-parens': ['error', 'as-needed']
   }
 }

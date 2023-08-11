@@ -1,1 +1,17 @@
-@import './reset.scss'
+@import './reset.scss';
+
+
+// 滚动条样式
+::-webkit-scrollbar-track-piece {
+  background: #EFEFEF;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C7D1DA;
+  border-radius: 3.5px;
+}

@@ -1,22 +1,5 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
 vue3-admin-template模板
 
 ## 项目创建
@@ -128,3 +111,66 @@ pnpm install -D eslint-plugin-import eslint-plugin-vue eslint-plugin-node eslint
 
 
 **当我们运行`pnpm run format`的时候，会把代码直接格式化**
+
+## pinia
+
+store和getters属性名不能重复
+
+## vue3 在js中使用scss变量
+
+在 vite 创建的项目中，如果你想在 js 里引用 scss 文件，需要在后缀前加上 .module
+
+variables.module.scss
+```scss
+// 左侧菜单宽度
+$base-menu-width: 260px;
+$base-menu-bgcolor: #0E2026;
+$menuText:#bebec0;
+$base-menu-active-color: #fff;
+// 顶部导航
+$base-tabbar-height: 48px;
+$base-tabbar-border-color: #E9E9E9;
+
+:export {
+  menuBg: $base-menu-bgcolor;
+  menuText: $menuText;
+  menuActiveText: $base-menu-active-color;
+}
+```
+
+**重点：需要使用 :export 导出指定变量**
+
+在js中使用:
+```vue
+<template>
+    <div>{{ variables.menuBg }}</div>
+</template>
+<script setup>
+import variables from './styles/variables.module.scss'
+console.log(variables, variables.menuBg)
+</script>
+```
+
+## 如何使用递归组件
+
+```vue
+<script lang="ts">
+export default {
+  name: 'MenuBar'
+}
+</script>
+<script lang="ts" setup>
+// 业务逻辑
+</script>
+```
+
+在组件的 template 中调用自身
+
+```vue
+<template>
+    <div>
+        ...
+        <MenuBar />
+    </div>
+</template>
+```

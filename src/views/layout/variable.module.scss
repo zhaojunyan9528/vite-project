@@ -1,0 +1,14 @@
+// 左侧菜单宽度
+$base-menu-width: 260px;
+$base-menu-bgcolor: #0E2026;
+$menuText:#bebec0;
+$base-menu-active-color: #fff;
+// 顶部导航
+$base-tabbar-height: 48px;
+$base-tabbar-border-color: #E9E9E9;
+
+:export {
+  menuBg: $base-menu-bgcolor;
+  menuText: $menuText;
+  menuActiveText: $base-menu-active-color;
+}
