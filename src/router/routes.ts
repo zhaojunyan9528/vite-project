@@ -14,8 +14,8 @@ export const constantRoute = [
   {
     path: '/',
     redirect: '/home',
-    component: Layout,
-    meta: { title: 'layout', icon: 'Setting' },
+    component: () => import('@/views/layout/index.vue'),
+    meta: { icon: 'Setting' },
     children: [
       {
         path: '/home',
@@ -67,7 +67,7 @@ export const constantRoute = [
         component: () => import('@/views/auth/menu.vue'),
         meta: {
           title: '菜单管理',
-          icon: 'Menu'
+          icon: 'Grid'
         }
       }
     ]

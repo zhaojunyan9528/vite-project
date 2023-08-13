@@ -5,8 +5,13 @@
   </div>
 </template>
 
-<script langs="ts" setup>
+<script lang="ts" setup>
 import config from '@/config.ts'
+</script>
+<script lang="ts">
+export default {
+  name: 'Logo'
+}
 </script>
 <style lang="scss" scoped>
 .logo {
