@@ -44,5 +44,7 @@ app.use(ElementPlus, {
 })
 app.use(gloablComponent)
 app.use(router)
+import './permisstion.ts'
+
 app.use(pinia)
 app.mount('#app')

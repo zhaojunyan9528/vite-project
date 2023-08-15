@@ -3,28 +3,23 @@ export interface loginForm {
   password: string
 }
 
-interface dataType {
-  token?: string
-  message?: string
-}
-export interface loginResponseData {
+export interface ResponseData {
   code: number
-  data: dataType
+  message: string
+  ok: boolean
+}
+export interface loginResponseData extends ResponseData {
+  data: string
 }
 
 interface userInfo {
-  userId: number
   avatar: string
-  username: string
-  password: string
-  desc: string
+  name: string
   roles: string[]
   buttons: string[]
   routes: string[]
-  token: string
 }
 
-export interface userinfoResponseData {
-  code: number
+export interface userinfoResponseData extends ResponseData {
   data: userInfo
 }

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { debounce } from 'throttle-debounce'
-const errorMessage = debounce(500, (message) => {
+import useUserStore from '@/store/modules/user.ts'
+const errorMessage = debounce(500, message => {
   ElMessage({
     message: message,
     duration: 1500,
@@ -16,18 +17,21 @@ const request = axios.create({
 })
 
 // 请求拦截器
-request.interceptors.request.use((config) => {
+request.interceptors.request.use(config => {
+  const userStore = useUserStore()
+  config.headers['token'] = userStore.token || ''
   return config
 })
 
 // 响应拦截器
 request.interceptors.response.use(
   (response) => {
+    console.log('打印', response.data)
     const code = response.data.code
     if (code === 200) {
       return response.data
     } else {
-      errorMessage(response.data.data.message)
+      errorMessage(response.data.message)
       return Promise.reject(response.data)
     }
   },

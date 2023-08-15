@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-
+import type { SettingState } from './types/type.ts'
 const useLayoutSettingStore = defineStore('SettingStore', {
-  state: () => {
+  state: (): SettingState => {
     return {
       expand: false,
       refreshKey: 1

@@ -1,12 +1,14 @@
 <template>
   <div v-if="config.logoShow" class="logo">
     <img :src="config.logo" class="logo_img" />
-    <p>{{ config.title }}</p>
+    <p v-if="!useSettingStore.expand">{{ config.title }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
 import config from '@/config.ts'
+import useLayoutSettingStore from '@/store/modules/setting.ts'
+const useSettingStore = useLayoutSettingStore()
 </script>
 <script lang="ts">
 export default {

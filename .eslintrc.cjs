@@ -31,6 +31,16 @@ module.exports = {
    * "error" 或 2  ==>  规则作为一个错误（代码不能执行，界面报错）
    */
   rules: {
+    'vue/max-attributes-per-line': [
+      2,
+      {
+        singleline: 10,
+        multiline: {
+          max: 10,
+          allowFirstLine: false
+        }
+      }
+    ],
     // eslint（https://eslint.bootcss.com/docs/rules/）
     'no-var': 'error', // 要求使用 let 或 const 而不是 var
     'no-multiple-empty-lines': ['warn', { max: 1 }], // 不允许多个空行

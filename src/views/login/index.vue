@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, watch, nextTick } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import userStore from '@/store/modules/user'
 import { ElNotification } from 'element-plus'
@@ -98,23 +98,13 @@ const loginRules = {
 }
 let loginForm = reactive({
   username: 'admin',
-  password: '111111'
+  password: 'atguigu123'
 })
 
 let loading = ref(false)
 let passwordType = ref('password')
-let redirect = ref(undefined)
-const loginFormRef = ref(null)
-const usernameRef = ref(null)
-const passwordRef = ref(null)
-
-watch(
-  route,
-  newRoute => {
-    redirect.value = newRoute.query && newRoute.query.redirect
-  },
-  { immediate: true }
-)
+const loginFormRef = ref()
+const passwordRef = ref()
 
 const showPwd = () => {
   if (passwordType.value === 'password') {
@@ -123,37 +113,37 @@ const showPwd = () => {
     passwordType.value = 'password'
   }
   nextTick(() => {
-    passwordRef.value && passwordRef.value.focus()
+    passwordRef.value.focus()
   })
 }
 
 const handleLogin = () => {
-  loginFormRef.value &&
-    loginFormRef.value.validate(valid => {
-      if (valid) {
-        loading.value = true
-        useUserStore
-          .userLogin(loginForm)
-          .then(() => {
-            // $message.success('登录成功')
-            let msg = getTime()
-            ElNotification({
-              title: `Hi,${msg}好~`,
-              message: '欢迎回来',
-              type: 'success'
-            })
-            loading.value = false
-            router.push({ path: '/' })
+  loginFormRef.value.validate((valid) => {
+    if (valid) {
+      loading.value = true
+      useUserStore
+        .userLogin(loginForm)
+        .then(() => {
+          // $message.success('登录成功')
+          let msg = getTime()
+          ElNotification({
+            title: `Hi,${msg}好~`,
+            message: '欢迎回来',
+            type: 'success'
           })
-          .catch(err => {
-            console.log('打印--err', err)
-            loading.value = false
-          })
-      } else {
-        console.log('error submit!!')
-        return false
-      }
-    })
+          loading.value = false
+          const redirect = (route.query || {}).redirect || '/'
+          router.push({ path: redirect as string })
+        })
+        .catch((err) => {
+          console.log('打印--err', err)
+          loading.value = false
+        })
+    } else {
+      console.log('error submit!!')
+      return false
+    }
+  })
 }
 </script>
 

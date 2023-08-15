@@ -33,7 +33,7 @@
         @click="fullScreen"
       ></el-button>
       <el-button size="small" icon="Setting" circle></el-button>
-      <img src="@/assets/vue.svg" alt="" />
+      <img :src="userStore.avatar" alt="" />
       <el-dropdown>
         <span class="el-dropdown-link">
           {{ userStore.username }}
@@ -118,8 +118,8 @@ export default {
   .tabbar_right {
     @include flex;
     img {
-      width: 24px;
-      height: 24px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       vertical-align: middle;
       margin: 0 10px 0 20px;

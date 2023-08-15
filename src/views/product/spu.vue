@@ -2,7 +2,7 @@
   <div>spu</div>
 </template>
 
-<script langs="ts" setup>
+<script lang="ts" setup>
 
 </script>
 <style lang="scss" scoped>

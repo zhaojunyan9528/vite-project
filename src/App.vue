@@ -8,9 +8,10 @@
   </div>
 </template>
 
-<script langs="ts" setup></script>
+<script lang="ts" setup></script>
 <style lang="scss" scoped>
 .page {
   height: 100vh;
+  overflow: hidden;
 }
 </style>
