@@ -97,21 +97,21 @@ export const constantRoute = [
         }
       },
       {
-        path: '/goods/sku',
-        name: 'Sku',
-        component: () => import('@/views/product/sku.vue'),
-        meta: {
-          title: 'SKU管理',
-          icon: 'TakeawayBox'
-        }
-      },
-      {
         path: '/goods/spu',
         name: 'Spu',
         component: () => import('@/views/product/spu.vue'),
         meta: {
           title: 'SPU管理',
           icon: 'ShoppingBag'
+        }
+      },
+      {
+        path: '/goods/sku',
+        name: 'Sku',
+        component: () => import('@/views/product/sku.vue'),
+        meta: {
+          title: 'SKU管理',
+          icon: 'TakeawayBox'
         }
       }
     ]

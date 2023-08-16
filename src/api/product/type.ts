@@ -63,3 +63,63 @@ export type AttrList = Attr[]
 export interface AttrResponseData extends ResponseData {
   data: Attr[]
 }
+
+// -------------------------------------
+
+// spu管理
+export interface SpuImage {
+  id: number
+  imgName: string
+  imgUrl: string
+  spuId: number
+}
+
+export type SpuImageList = SpuImage[]
+
+export interface SpuAttrValue {
+  saleAttrName: string
+  id: number
+  spuId: number
+  saleAttrValueName: string
+}
+
+type SpuAttrValueList = SpuAttrValue[]
+
+export interface SpuAttr {
+  saleAttrName: string
+  id: number
+  spuId: number
+  spuSaleAttrValueList: SpuAttrValueList
+}
+
+export type SpuAttrList = SpuAttr[]
+
+export interface SpuRecord {
+  category3Id: number
+  spuName: string
+  tmId: number
+  id?: number
+  description: string
+  spuImageList: SpuImageList
+  spuPosterList?: SpuImageList
+  spuSaleAttrList: SpuAttrList
+}
+
+export interface SpuResponseData extends ResponseData {
+  data: {
+    records: SpuRecord[]
+    total: number
+    size: number
+    current: number
+    searchCount: boolean
+    pages: number
+  }
+}
+
+export interface SaleAttr {
+  id: number
+  name: string
+}
+export interface SaleAttrResponseData extends ResponseData {
+  data: SaleAttr[]
+}
