@@ -143,3 +143,14 @@ export interface SkuData {
   skuSaleAttrValueList: SpuAttrValueList // 销售属性
   skuDefaultImg: string // sku图片地址
 }
+
+export interface SkuResponseData extends ResponseData {
+  data: {
+    records: SkuData[]
+    total: number
+    size: number
+    current: number
+    searchCount: boolean
+    pages: number
+  }
+}
