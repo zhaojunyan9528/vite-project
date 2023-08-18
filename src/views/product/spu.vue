@@ -26,7 +26,7 @@
             prop="description"
             show-overflow-tooltip
           />
-          <el-table-column label="操作" width="180px">
+          <el-table-column label="操作" width="200px">
             <template #default="{ row }">
               <el-button
                 type="primary"
@@ -79,28 +79,45 @@
       </div>
       <!-- 添加SPU|修改SPU子组件 -->
       <SpuForm
-        ref="spuRef"
         v-show="scene == 1"
+        ref="spuRef"
         @changeScene="changeScene"
       ></SpuForm>
       <!-- 添加SKU的子组件 -->
       <SkuForm
-        ref="skuRef"
         v-show="scene == 2"
+        ref="skuRef"
         @changeScene="changeScene"
       ></SkuForm>
+      <!-- 查看spu -->
+      <el-dialog v-model="showDialog" title="SKU列表">
+        <el-table border :data="skuArr">
+          <el-table-column label="SKU名字" prop="skuName"></el-table-column>
+          <el-table-column label="SKU价格" prop="price"></el-table-column>
+          <el-table-column label="SKU重量" prop="weight"></el-table-column>
+          <el-table-column label="SKU图片">
+            <template #default="{ row }">
+              <img
+                :src="row.skuDefaultImg"
+                style="width: 100px; height: 100px"
+              />
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-dialog>
     </el-card>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onBeforeUnmount } from 'vue'
-import { reqHasSpu } from '@/api/product/spu.ts'
-import type { SpuResponseData, SpuRecord } from '@/api/product/type.ts'
+import { ref, watch, onBeforeUnmount, inject, onMounted } from 'vue'
+import { reqHasSpu, reqDeleteSpu, reqFindSkuById } from '@/api/product/spu.ts'
+import type { SpuResponseData, SpuRecord, SkuData } from '@/api/product/type.ts'
 import useCategoryStore from '@/store/modules/category.ts'
+const $message: any = inject('$message')
 
-import SpuForm from './components/SpuForm.vue'
-import SkuForm from './components/SkuForm.vue'
+import SpuForm from '@/views/product/components/SpuForm.vue'
+import SkuForm from '@/views/product/components/SkuForm.vue'
 
 const categoryStore = useCategoryStore()
 let scene = ref<number>(0)
@@ -111,7 +128,8 @@ let total = ref<number>(0)
 let records = ref<SpuRecord[]>([])
 const spuRef = ref()
 const skuRef = ref()
-
+let showDialog = ref(false)
+let skuArr = ref<SkuData[]>([])
 watch(
   () => categoryStore.c3Id,
   () => {
@@ -123,10 +141,11 @@ watch(
     getList()
   }
 )
+
 //路由组件销毁的时候，把仓库分类相关的数据清空
 onBeforeUnmount(() => {
-  //清空仓库的数据 todo
-  // categoryStore.$reset()
+  //清空仓库的数据
+  categoryStore.$reset()
 })
 
 const getList = (pageNo = 1) => {
@@ -144,23 +163,39 @@ const addSpu = () => {
 }
 // 添加SKU
 const addSku = (row: any) => {
-  console.log('打印', row)
+  scene.value = 2
+  skuRef.value.initSkuData(categoryStore.c1Id, categoryStore.c2Id, row)
 }
 // 修改SPU
 const updateSpu = (row: any) => {
-  console.log('打印', row)
+  scene.value = 1
+  spuRef.value.initUpdateSpu(row)
 }
 // 查看SKU
 const findSku = (row: any) => {
-  console.log('打印', row)
+  reqFindSkuById(row.id).then((res) => {
+    skuArr.value = res.data
+    showDialog.value = true
+  })
 }
 // 删除SPU
 const deleteSpu = (row: any) => {
   console.log('打印', row)
+  reqDeleteSpu(row.id).then(() => {
+    $message.success('删除成功')
+    getList(records.value.length > 1 ? pageNo.value : 1)
+  })
 }
 
 const changeScene = (v: any) => {
   console.log('打印', v)
+  scene.value = v.flag
+  if (v.params === 'update') {
+    // 更新留在当前页面
+    getList(pageNo.value)
+  } else {
+    getList()
+  }
 }
 </script>
 <style lang="scss" scoped></style>

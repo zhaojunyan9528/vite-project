@@ -19,6 +19,7 @@ module.exports = {
   },
   /* 继承已有的规则 */
   extends: [
+    'plugin:vue/recommended',
     'eslint:recommended',
     'plugin:vue/vue3-essential',
     'plugin:@typescript-eslint/recommended',
@@ -69,6 +70,7 @@ module.exports = {
       }
     ],
     'comma-style': [2, 'last'],
-    'arrow-parens': 'off'
+    'arrow-parens': 'off',
+    'vue/no-v-model-argument': 'off'
   }
 }

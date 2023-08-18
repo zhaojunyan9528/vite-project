@@ -26,7 +26,7 @@ request.interceptors.request.use(config => {
 // 响应拦截器
 request.interceptors.response.use(
   (response) => {
-    console.log('打印', response.data)
+    // console.log('打印', response.data)
     const code = response.data.code
     if (code === 200) {
       return response.data

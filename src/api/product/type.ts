@@ -68,10 +68,10 @@ export interface AttrResponseData extends ResponseData {
 
 // spu管理
 export interface SpuImage {
-  id: number
+  id?: number
   imgName: string
   imgUrl: string
-  spuId: number
+  spuId?: number
 }
 
 export type SpuImageList = SpuImage[]
@@ -122,4 +122,24 @@ export interface SaleAttr {
 }
 export interface SaleAttrResponseData extends ResponseData {
   data: SaleAttr[]
+}
+
+export interface SkuAttr {
+  attrId: number
+  attrName: string
+  valueName: string
+  valueId: number
+}
+export interface SkuData {
+  category3Id: number | string // 三级分类的ID
+  spuId: number // 已有的SPU的ID
+  tmId: number // SPU品牌的ID
+  //v-model收集
+  skuName: string // sku名字
+  price: number // sku价格
+  weight: number // sku重量
+  skuDesc: string // sku的描述
+  skuAttrValueList: SkuAttr[] // 平台属性的收集
+  skuSaleAttrValueList: SpuAttrValueList // 销售属性
+  skuDefaultImg: string // sku图片地址
 }

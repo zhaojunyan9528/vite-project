@@ -1,5 +1,12 @@
 import request from '@/utils/request'
-import type { SpuResponseData, SaleAttrResponseData } from './type.ts'
+import type {
+  SpuResponseData,
+  SaleAttrResponseData,
+  SpuRecord,
+  SpuImage,
+  SpuAttr,
+  SkuData
+} from './type.ts'
 
 enum API {
   HASSPU_URL = '/admin/product/',
@@ -23,6 +30,7 @@ enum API {
   REMOVESPU_URL = '/admin/product/deleteSpu/'
 }
 
+// spu列表
 export const reqHasSpu = (
   pageNo: number,
   pageSize: number,
@@ -32,7 +40,26 @@ export const reqHasSpu = (
     API.HASSPU_URL + `${pageNo}/${pageSize}?category3Id=${category3Id}`
   )
 
+// 品牌列表
 export const reqAllTradeMark = () => request.get<any, any>(API.ALLTRADEMARK_URL)
 
 export const reqAllSaleAttr = () =>
   request.get<any, SaleAttrResponseData>(API.ALLSALEATTR_URL)
+
+export const reqAddOrUpdateSpu = (data: SpuRecord) =>
+  request.post<any, any>(data.id ? API.UPDATESPU_URL : API.ADDSPU_URL, data)
+
+export const reqSpuImageList = (spuId: number) =>
+  request.get<any, SpuImage[]>(API.IMAGE_URL + spuId)
+
+export const reqSpuHasSaleAttr = (spuId: number) =>
+  request.get<any, SpuAttr[]>(API.SPUHASSALEATTR_URL + spuId)
+
+export const reqDeleteSpu = (spuId: number) =>
+  request.delete<any, any>(API.REMOVESPU_URL + spuId)
+
+export const reqAddSpuSku = (sku: SkuData) =>
+  request.post<any, any>(API.ADDSKU_URL, sku)
+
+export const reqFindSkuById = (spuId: number) =>
+  request.get<any, any>(API.SKUINFO_URL + spuId)
