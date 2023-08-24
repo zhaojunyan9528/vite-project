@@ -8,8 +8,8 @@
         <el-breadcrumb-item
           v-for="(item, index) in $route.matched"
           v-show="item.meta.title"
-          :to="item.path"
           :key="index"
+          :to="item.path"
           class="myBread_item"
         >
           <el-icon class="center">
@@ -32,7 +32,37 @@
         circle
         @click="fullScreen"
       ></el-button>
-      <el-button size="small" icon="Setting" circle></el-button>
+      <el-popover
+        placement="bottom"
+        title="主题设置"
+        :width="300"
+        trigger="hover"
+      >
+        <el-form label-width="100px" label-position="left">
+          <el-form-item label="主题颜色">
+            <el-color-picker
+              v-model="themeColor"
+              size="small"
+              show-alpha
+              :predefine="predefineColors"
+              @change="setColor"
+            />
+          </el-form-item>
+          <el-form-item label="暗黑模式">
+            <el-switch
+              v-model="dark"
+              inline-prompt
+              size="small"
+              active-icon="MoonNight"
+              inactive-icon="Sunny"
+              @change="handleChange"
+            />
+          </el-form-item>
+        </el-form>
+        <template #reference>
+          <el-button size="small" icon="Setting" circle></el-button>
+        </template>
+      </el-popover>
       <img :src="userStore.avatar" alt="" />
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -52,13 +82,30 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import useUserStore from '@/store/modules/user.ts'
 import useLayoutSettingStore from '@/store/modules/setting.ts'
 const useSettingStore = useLayoutSettingStore()
 const userStore = useUserStore()
-
+const predefineColors = ref([
+  '#ff4500',
+  '#ff8c00',
+  '#ffd700',
+  '#90ee90',
+  '#00ced1',
+  '#1e90ff',
+  '#c71585',
+  'rgba(255, 69, 0, 0.68)',
+  'rgb(255, 120, 0)',
+  'hsv(51, 100, 98)',
+  'hsva(120, 40, 94, 0.5)',
+  'hsl(181, 100%, 37%)',
+  'hsla(209, 100%, 56%, 0.73)',
+  '#c7158577'
+])
+let themeColor = ref('#409eff')
+let dark = ref(false)
 const expand = computed(() => {
   return useSettingStore.expand
 })
@@ -92,6 +139,15 @@ const logout = async () => {
   await userStore.userLogout()
   //跳转到登录页面
   $router.push({ path: '/login', query: { redirect: $route.path } })
+}
+const handleChange = () => {
+  let html = document.documentElement
+  dark.value ? (html.className = 'dark') : (html.className = '')
+}
+const setColor = () => {
+  const el = document.documentElement
+  // 设置 css 变量
+  el.style.setProperty('--el-color-primary', themeColor.value)
 }
 </script>
 <script lang="ts">

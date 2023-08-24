@@ -10,7 +10,7 @@ import App from './App.vue'
 import gloablComponent from './components/index'
 
 import '@/styles/index.scss'
-
+import 'element-plus/theme-chalk/dark/css-vars.css' // 暗黑模式切换
 import { ElMessage } from 'element-plus'
 
 const app = createApp(App)

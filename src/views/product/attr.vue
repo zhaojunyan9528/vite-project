@@ -28,9 +28,9 @@
           <el-table-column label="属性值名称">
             <template #default="{ row }">
               <el-tag
-                style="margin: 5px"
                 v-for="(item, index) in row.attrValueList"
                 :key="item.id + index"
+                style="margin: 5px"
               >
                 {{ item.valueName }}
               </el-tag>
@@ -67,17 +67,17 @@
         <el-form :inline="true">
           <el-form-item label="属性名称">
             <el-input
-              placeholder="请你输入属性名称"
               v-model="attrParams.attrName"
+              placeholder="请你输入属性名称"
             ></el-input>
           </el-form-item>
         </el-form>
         <el-button
-          @click="addAttrValue"
           :disabled="attrParams.attrName ? false : true"
           type="primary"
           size="default"
           icon="Plus"
+          @click="addAttrValue"
         >
           添加属性值
         </el-button>
@@ -98,12 +98,12 @@
             <!-- row:即为当前属性值对象 -->
             <template #default="{ row, $index }">
               <el-input
-                :ref="(vc: any) => (inputArr[$index] = vc)"
                 v-if="row.flag"
-                @blur="toLook(row, $index)"
+                :ref="(vc: any) => (inputArr[$index] = vc)"
+                v-model="row.valueName"
                 size="small"
                 placeholder="请你输入属性值名称"
-                v-model="row.valueName"
+                @blur="toLook(row, $index)"
               ></el-input>
               <div v-else @click="toEdit(row, $index)">{{ row.valueName }}</div>
             </template>
@@ -122,8 +122,8 @@
         <el-button
           type="primary"
           size="default"
-          @click="handleSave"
           :disabled="attrParams.attrValueList.length > 0 ? false : true"
+          @click="handleSave"
         >
           保存
         </el-button>
@@ -239,7 +239,7 @@ const toLook = (row: AttrValue, $index: number) => {
     return
   }
   //非法情况2
-  let repeat = attrParams.attrValueList.find(item => {
+  let repeat = attrParams.attrValueList.find((item) => {
     //切记把当前失却焦点属性值对象从当前数组扣除判断
     if (item != row) {
       return item.valueName === row.valueName

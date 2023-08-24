@@ -10,7 +10,7 @@ export interface UserState {
 
 export interface SettingState {
   expand: boolean
-  refreshKey: string
+  refreshKey: number
 }
 
 export interface CategoryState {

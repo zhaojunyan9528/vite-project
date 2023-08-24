@@ -47,13 +47,13 @@
       <el-pagination
         v-model:current-page="pageNo"
         v-model:page-size="limit"
-        @size-change="sizeChange"
-        @current-change="getHasTrademark"
         :pager-count="9"
         :page-sizes="[3, 5, 7, 9]"
         :background="true"
         :total="total"
         layout="prev, pager, next, jumper,->,sizes,total"
+        @size-change="sizeChange"
+        @current-change="getHasTrademark"
       />
     </el-card>
     <el-dialog
@@ -61,15 +61,15 @@
       :title="trademarkParams.id ? '修改品牌' : '添加品牌'"
     >
       <el-form
+        ref="formRef"
         style="width: 80%"
         :model="trademarkParams"
         :rules="rules"
-        ref="formRef"
       >
         <el-form-item label="品牌名称" label-width="100px" prop="tmName">
           <el-input
-            placeholder="请您输入品牌名称"
             v-model="trademarkParams.tmName"
+            placeholder="请您输入品牌名称"
           ></el-input>
         </el-form-item>
         <el-form-item label="品牌LOGO" label-width="100px" prop="logoUrl">
@@ -203,7 +203,7 @@ const handleAvatarSuccess: UploadProps['onSuccess'] = (
   //图片上传成功,清除掉对应图片校验结果
   formRef.value.clearValidate('logoUrl')
 }
-const beforeAvatarUpload: UploadProps['beforeUpload'] = rawFile => {
+const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
   if (
     rawFile.type == 'image/png' ||
     rawFile.type == 'image/jpeg' ||

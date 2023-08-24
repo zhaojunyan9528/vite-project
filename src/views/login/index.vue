@@ -79,8 +79,8 @@ const useUserStore = userStore()
 //   error: (msg: string) => void
 // }
 const validateUsername = (_rule: any, value: any, callback: any) => {
-  if (!value || (value !== 'admin' && value !== 'system')) {
-    callback(new Error('Please enter the correct user name'))
+  if (!value) {
+    callback(new Error('请输入正确的用户名'))
   } else {
     callback()
   }
