@@ -12,7 +12,7 @@ import gloablComponent from './components/index'
 import '@/styles/index.scss'
 import 'element-plus/theme-chalk/dark/css-vars.css' // 暗黑模式切换
 import { ElMessage } from 'element-plus'
-
+import { hasBtnAuth } from '@/directive/index.ts'
 const app = createApp(App)
 
 const $message = {
@@ -44,6 +44,7 @@ app.use(ElementPlus, {
 })
 app.use(gloablComponent)
 app.use(router)
+hasBtnAuth(app) // 指令
 import './permisstion.ts'
 
 app.use(pinia)

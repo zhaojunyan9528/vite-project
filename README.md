@@ -174,3 +174,7 @@ export default {
     </div>
 </template>
 ```
+
+## 按钮指令使用
+
+v-has="'btn.Attr.add'"

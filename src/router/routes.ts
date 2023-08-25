@@ -38,9 +38,18 @@ export const constantRoute = [
     }
   },
   {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/404/index.vue'),
+    meta: { title: '404', hidden: true }
+  }
+]
+export const asyncRoutes = [
+  {
     path: '/auth',
     redirect: '/auth/user',
     component: Layout,
+    name: 'Acl',
     meta: { title: '权限管理', icon: 'Lock' },
     children: [
       {
@@ -63,7 +72,7 @@ export const constantRoute = [
       },
       {
         path: '/auth/menu',
-        name: 'Menu',
+        name: 'Permission',
         component: () => import('@/views/auth/menu.vue'),
         meta: {
           title: '菜单管理',
@@ -76,11 +85,12 @@ export const constantRoute = [
     path: '/goods',
     redirect: '/goods/trade',
     component: Layout,
+    name: 'Product',
     meta: { title: '商品管理', icon: 'Goods' },
     children: [
       {
         path: '/goods/trade',
-        name: 'Trade',
+        name: 'Trademark',
         component: () => import('@/views/product/trademark.vue'),
         meta: {
           title: '品牌管理',
@@ -115,13 +125,9 @@ export const constantRoute = [
         }
       }
     ]
-  },
-  {
-    path: '/404',
-    name: '404',
-    component: () => import('@/views/404/index.vue'),
-    meta: { title: '404', hidden: true }
-  },
+  }
+]
+export const anyRoutes = [
   {
     path: '/:pathMatch(.*)',
     redirect: '/404',

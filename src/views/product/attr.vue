@@ -5,6 +5,7 @@
       <div v-show="scene == 0">
         <!-- 选择三级分类可添加 -->
         <el-button
+          v-has="'btn.Attr.add'"
           :disabled="!categoryStore.c3Id"
           type="primary"
           size="default"

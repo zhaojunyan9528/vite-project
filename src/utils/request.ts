@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { debounce } from 'throttle-debounce'
 import useUserStore from '@/store/modules/user.ts'
-const errorMessage = debounce(500, message => {
+const errorMessage = debounce(500, (message: string) => {
   ElMessage({
     message: message,
     duration: 1500,
@@ -17,7 +17,7 @@ const request = axios.create({
 })
 
 // 请求拦截器
-request.interceptors.request.use(config => {
+request.interceptors.request.use((config) => {
   const userStore = useUserStore()
   config.headers['token'] = userStore.token || ''
   return config

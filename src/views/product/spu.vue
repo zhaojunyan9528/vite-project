@@ -110,7 +110,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onBeforeUnmount, inject, onMounted } from 'vue'
+import { ref, watch, onBeforeUnmount, inject } from 'vue'
 import { reqHasSpu, reqDeleteSpu, reqFindSkuById } from '@/api/product/spu.ts'
 import type { SpuResponseData, SpuRecord, SkuData } from '@/api/product/type.ts'
 import useCategoryStore from '@/store/modules/category.ts'
