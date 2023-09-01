@@ -60,10 +60,10 @@ export default {
 defineProps(['menuList'])
 
 const getChildLength = (arr: any) => {
-  return arr.filter(item => !item.meta.hidden).length
+  return arr.filter((item: any) => !item.meta.hidden).length
 }
-const menuClick = v => {
-  console.log('打印', v)
+const menuClick = () => {
+  // console.log('打印', v)
 }
 </script>
 <style lang="scss" scoped>

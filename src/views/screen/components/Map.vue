@@ -110,7 +110,7 @@ const option = {
     }
   ]
 }
-echarts.registerMap('china', chinaJSON)
+echarts.registerMap('china', chinaJSON as any)
 onMounted(() => {
   let mycharts = echarts.init(charts.value)
   mycharts.setOption(option)

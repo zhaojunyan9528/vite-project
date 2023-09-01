@@ -28,7 +28,7 @@ onMounted(() => {
         color: '#fff',
         fontSize: 14
       },
-      formatter: function (name) {
+      formatter: function (name: any) {
         return name
       }
     },
@@ -46,7 +46,7 @@ onMounted(() => {
           show: true,
           position: 'inside',
           color: 'white',
-          formatter: function (v) {
+          formatter: function (v: any) {
             return v.percent + '%'
           }
         },

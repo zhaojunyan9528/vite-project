@@ -236,7 +236,7 @@ const validatorname = (_rule: any, value: any, callBack: any) => {
     callBack(new Error('用户昵称至少五位'))
   }
 }
-const validatorPassword = (rule: any, value: any, callBack: any) => {
+const validatorPassword = (_rule: any, value: any, callBack: any) => {
   //用户名字|昵称,长度至少五位
   if (value.trim().length >= 6) {
     callBack()

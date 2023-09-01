@@ -28,13 +28,13 @@
       <el-form :inline="true">
         <el-form-item
           v-for="(item, index) in attrArr"
-          :key="item.id + index"
+          :key="index"
           :label="item.attrName"
         >
           <el-select v-model="item.attrIdAndValueId">
             <el-option
               v-for="(attrValue, jindex) in item.attrValueList"
-              :key="attrValue.id + jindex"
+              :key="jindex"
               :value="`${item.id}:${attrValue.id}`"
               :label="attrValue.valueName"
             ></el-option>
@@ -93,13 +93,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive, inject } from 'vue'
-import type {
-  SpuAttr,
-  SpuImage,
-  SkuData,
-  Attr,
-  AttrResponseData
-} from '@/api/product/type.ts'
+import type { SpuImage, SkuData, AttrResponseData } from '@/api/product/type.ts'
 import { reqAttr } from '@/api/product/attr'
 import {
   reqSpuHasSaleAttr,
@@ -121,8 +115,8 @@ let skuParams = reactive<SkuData>({
   skuSaleAttrValueList: [],
   skuDefaultImg: ''
 })
-let attrArr = ref<Attr[]>([])
-let saleArr = ref<SpuAttr[]>([])
+let attrArr = ref<any>([])
+let saleArr = ref<any>([])
 let imgArr = ref<SpuImage[]>([])
 let tableRef = ref()
 
@@ -139,11 +133,11 @@ const initSkuData = (
     attrArr.value = res.data
   })
   // 获取spu的销售属性
-  reqSpuHasSaleAttr(spu.id).then((res) => {
+  reqSpuHasSaleAttr(spu.id).then((res: any) => {
     saleArr.value = res.data
   })
   // 获取spu的图片
-  reqSpuImageList(spu.id as number).then((result) => {
+  reqSpuImageList(spu.id as number).then((result: any) => {
     imgArr.value = result.data
   })
 }
@@ -163,22 +157,22 @@ const handleCancel = () => {
 const handleSave = () => {
   // 整理平台属性
   skuParams.skuAttrValueList = attrArr.value
-    .map((item) => {
+    .map((item: any) => {
       if (item.attrIdAndValueId) {
         const [attrId, valueId] = item.attrIdAndValueId.split(':')
         return { attrId, valueId }
       }
     })
-    .filter((v) => v)
+    .filter((v: any) => v)
   // 整理销售属性
   skuParams.skuSaleAttrValueList = saleArr.value
-    .map((item) => {
+    .map((item: any) => {
       if (item.saleIdAndValueId) {
         const [saleAttrId, saleAttrValueId] = item.saleIdAndValueId.split(':')
         return { saleAttrId, saleAttrValueId }
       }
     })
-    .filter((v) => v)
+    .filter((v: any) => v)
   reqAddSpuSku(skuParams).then(() => {
     $message.success('添加成功')
     $emit('changeScene', { flag: 0, params: 'update' })

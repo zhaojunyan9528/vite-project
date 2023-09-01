@@ -157,8 +157,8 @@ import type {
   SaleAttrResponseData,
   SaleAttr,
   SpuAttr,
-  SpuAttrValue,
-  SpuImage
+  SpuImage,
+  TradeMarkAllResponseData
 } from '@/api/product/type.ts'
 const attrRef = ref()
 const $message: any = inject('$message')
@@ -203,7 +203,7 @@ const initAddSpu = (c3Id: number | string) => {
   imgList.value = []
   saleAttr.value = []
   saleAttrIdAndValueName.value = ''
-  reqAllTradeMark().then((res: TradeMark[]) => {
+  reqAllTradeMark().then((res: TradeMarkAllResponseData) => {
     AllTradeMark.value = res.data
   })
   reqAllSaleAttr().then((res: SaleAttrResponseData) => {
@@ -214,18 +214,18 @@ const initAddSpu = (c3Id: number | string) => {
 const initUpdateSpu = (spu: SpuRecord) => {
   Object.assign(SpuParams.value, spu)
   // 获取spu的图片
-  reqSpuImageList(spu.id as number).then((result) => {
+  reqSpuImageList(spu.id as number).then((result: any) => {
     imgList.value = result.data.map((item: SpuImage) => ({
       name: item.imgName,
       url: item.imgUrl
     }))
   })
   // 获取spu的属性
-  reqSpuHasSaleAttr(spu.id as number).then((res: SpuAttr) => {
+  reqSpuHasSaleAttr(spu.id as number).then((res: any) => {
     saleAttr.value = res.data
   })
   saleAttrIdAndValueName.value = ''
-  reqAllTradeMark().then((res: TradeMark[]) => {
+  reqAllTradeMark().then((res: TradeMarkAllResponseData) => {
     AllTradeMark.value = res.data
   })
   reqAllSaleAttr().then((res: SaleAttrResponseData) => {
@@ -265,7 +265,7 @@ const handleSave = () => {
   // spuImageList: SpuImageList
   // spuPosterList?: SpuImageList
   // spuSaleAttrList: SpuAttrList
-  SpuParams.value.spuImageList = imgList.value.map((item) => ({
+  SpuParams.value.spuImageList = imgList.value.map((item: any) => ({
     imgName: item.name,
     imgUrl: (item.response && item.response.data) || item.url
   }))
@@ -305,7 +305,7 @@ const toEdit = (row: any) => {
 // 失焦新增销售属性值
 const toLook = (row: any) => {
   const { baseSaleAttrId, saleAttrValueNameTemp: saleAttrValueName } = row
-  const newSaleAttrValue: SpuAttrValue = {
+  const newSaleAttrValue: any = {
     baseSaleAttrId,
     saleAttrValueName
   }
@@ -313,7 +313,7 @@ const toLook = (row: any) => {
     $message.error('属性值不能为空')
     return
   }
-  const isRepeat = row.spuSaleAttrValueList.find((item) => {
+  const isRepeat = row.spuSaleAttrValueList.find((item: any) => {
     return item.saleAttrValueName == saleAttrValueName
   })
   if (isRepeat) {

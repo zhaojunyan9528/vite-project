@@ -95,7 +95,7 @@ onMounted(() => {
         itemStyle: {
           borderRadius: [10, 10, 0, 0],
           //柱条颜色
-          color: function (data) {
+          color: function (data: any) {
             //给每一个柱条这是背景颜色
             let arr = [
               'red',
@@ -153,7 +153,7 @@ onMounted(() => {
         itemStyle: {
           borderRadius: [10, 10, 0, 0],
           //柱条颜色
-          color: function (data) {
+          color: function (data: any) {
             //给每一个柱条这是背景颜色
             let arr = [
               'red',

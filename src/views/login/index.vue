@@ -118,7 +118,7 @@ const showPwd = () => {
 }
 
 const handleLogin = () => {
-  loginFormRef.value.validate((valid) => {
+  loginFormRef.value.validate((valid: any) => {
     if (valid) {
       loading.value = true
       useUserStore

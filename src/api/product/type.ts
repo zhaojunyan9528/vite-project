@@ -25,6 +25,9 @@ export interface TradeMarkResponseData extends ResponseData {
     pages: number
   }
 }
+export interface TradeMarkAllResponseData extends ResponseData {
+  data: Records
+}
 
 // 属性管理
 
@@ -76,6 +79,10 @@ export interface SpuImage {
 
 export type SpuImageList = SpuImage[]
 
+export interface SpuImageResponseData extends ResponseData {
+  data: SpuImageList
+}
+
 export interface SpuAttrValue {
   saleAttrName: string
   id: number
@@ -86,18 +93,19 @@ export interface SpuAttrValue {
 type SpuAttrValueList = SpuAttrValue[]
 
 export interface SpuAttr {
+  baseSaleAttrId?: number | string
   saleAttrName: string
-  id: number
-  spuId: number
+  id?: number
+  spuId?: number
   spuSaleAttrValueList: SpuAttrValueList
 }
 
 export type SpuAttrList = SpuAttr[]
 
 export interface SpuRecord {
-  category3Id: number
+  category3Id: number | string
   spuName: string
-  tmId: number
+  tmId: number | string
   id?: number
   description: string
   spuImageList: SpuImageList
@@ -127,17 +135,17 @@ export interface SaleAttrResponseData extends ResponseData {
 export interface SkuAttr {
   attrId: number
   attrName: string
-  valueName: string
-  valueId: number
+  valueName?: string
+  valueId?: number
 }
 export interface SkuData {
   category3Id: number | string // 三级分类的ID
-  spuId: number // 已有的SPU的ID
-  tmId: number // SPU品牌的ID
+  spuId: number | string // 已有的SPU的ID
+  tmId: number | string // SPU品牌的ID
   //v-model收集
   skuName: string // sku名字
-  price: number // sku价格
-  weight: number // sku重量
+  price: number | string // sku价格
+  weight: number | string // sku重量
   skuDesc: string // sku的描述
   skuAttrValueList: SkuAttr[] // 平台属性的收集
   skuSaleAttrValueList: SpuAttrValueList // 销售属性

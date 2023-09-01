@@ -52,6 +52,15 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^17.6.7
     version: registry.npmmirror.com/@commitlint/config-conventional@17.6.7
+  '@types/lodash':
+    specifier: ^4.14.197
+    version: registry.npmmirror.com/@types/lodash@4.14.197
+  '@types/nprogress':
+    specifier: ^0.2.0
+    version: registry.npmmirror.com/@types/nprogress@0.2.0
+  '@types/throttle-debounce':
+    specifier: ^5.0.0
+    version: registry.npmmirror.com/@types/throttle-debounce@5.0.0
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.2.0
     version: registry.npmmirror.com/@typescript-eslint/eslint-plugin@6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.0.2)
@@ -1216,14 +1225,13 @@ packages:
     name: '@types/lodash-es'
     version: 4.17.8
     dependencies:
-      '@types/lodash': registry.npmmirror.com/@types/lodash@4.14.196
+      '@types/lodash': registry.npmmirror.com/@types/lodash@4.14.197
     dev: false
 
-  registry.npmmirror.com/@types/lodash@4.14.196:
-    resolution: {integrity: sha512-22y3o88f4a94mKljsZcanlNWPzO0uBsBdzLAngf2tp533LzZcQzb6+eZPJ+vCTt+bqF2XnvT9gejTLsAcJAJyQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.196.tgz}
+  registry.npmmirror.com/@types/lodash@4.14.197:
+    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.197.tgz}
     name: '@types/lodash'
-    version: 4.14.196
-    dev: false
+    version: 4.14.197
 
   registry.npmmirror.com/@types/minimist@1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/minimist/-/minimist-1.2.2.tgz}
@@ -1249,6 +1257,12 @@ packages:
     version: 2.4.1
     dev: true
 
+  registry.npmmirror.com/@types/nprogress@0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/nprogress/-/nprogress-0.2.0.tgz}
+    name: '@types/nprogress'
+    version: 0.2.0
+    dev: true
+
   registry.npmmirror.com/@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/semver/-/semver-7.5.0.tgz}
     name: '@types/semver'
@@ -1261,6 +1275,12 @@ packages:
     version: 2.6.4
     dependencies:
       '@types/node': registry.npmmirror.com/@types/node@20.4.5
+    dev: true
+
+  registry.npmmirror.com/@types/throttle-debounce@5.0.0:
+    resolution: {integrity: sha512-Pb7k35iCGFcGPECoNE4DYp3Oyf2xcTd3FbFQxXUI9hEYKUl6YX+KLf7HrBmgVcD05nl50LIH6i+80js4iYmWbw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/throttle-debounce/-/throttle-debounce-5.0.0.tgz}
+    name: '@types/throttle-debounce'
+    version: 5.0.0
     dev: true
 
   registry.npmmirror.com/@types/web-bluetooth@0.0.16:
@@ -3025,7 +3045,7 @@ packages:
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue@2.1.0(vue@3.3.4)
       '@floating-ui/dom': registry.npmmirror.com/@floating-ui/dom@1.5.1
       '@popperjs/core': registry.npmmirror.com/@sxzz/popperjs-es@2.11.7
-      '@types/lodash': registry.npmmirror.com/@types/lodash@4.14.196
+      '@types/lodash': registry.npmmirror.com/@types/lodash@4.14.197
       '@types/lodash-es': registry.npmmirror.com/@types/lodash-es@4.17.8
       '@vueuse/core': registry.npmmirror.com/@vueuse/core@9.13.0(vue@3.3.4)
       async-validator: registry.npmmirror.com/async-validator@4.2.5

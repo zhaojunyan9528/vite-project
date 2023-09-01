@@ -99,7 +99,7 @@ const handleAdd = (row: Menu) => {
     name: '',
     code: '',
     pid: row.id,
-    level: row.level + 1
+    level: (row.level as number) + 1
   })
   nextTick(() => {
     menuFormRef.value.clearValidate('name')
